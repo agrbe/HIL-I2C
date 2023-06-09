@@ -107,7 +107,11 @@ int main(int argc, char *argv[])
 
 	// use defaults for now, except also enable magnetometer.
 	rc_mpu_config_t conf = rc_mpu_default_config();
-	conf.i2c_bus = I2C_BUS;
+	// conf.i2c_bus = I2C_BUS;
+	conf.i2c_bus = 1;
+	conf.gpio_interrupt_pin_chip = 3;
+	conf.gpio_interrupt_pin = 20;
+	conf.dmp_sample_rate = 200;
 	conf.enable_magnetometer = enable_magnetometer;
 	conf.show_warnings = enable_warnings;
 
@@ -151,6 +155,8 @@ int main(int argc, char *argv[])
 	if(enable_thermometer) printf(" Temp (C)");
 	printf("\n");
 
+	rc_usleep(100000);
+	
 	//now just wait, print_data will run
 	while (running) {
 		printf("\r");
@@ -159,15 +165,15 @@ int main(int argc, char *argv[])
 		if(rc_mpu_read_accel(&data)<0){
 			printf("read accel data failed\n");
 		}
-		if(rc_mpu_read_gyro(&data)<0){
-			printf("read gyro data failed\n");
-		}
-		if(enable_magnetometer && rc_mpu_read_mag(&data)){
-			printf("read mag data failed\n");
-		}
-		if(enable_thermometer && rc_mpu_read_temp(&data)){
-			printf("read imu thermometer failed\n");
-		}
+		// if(rc_mpu_read_gyro(&data)<0){
+		// 	printf("read gyro data failed\n");
+		// }
+		// if(enable_magnetometer && rc_mpu_read_mag(&data)){
+		// 	printf("read mag data failed\n");
+		// }
+		// if(enable_thermometer && rc_mpu_read_temp(&data)){
+		// 	printf("read imu thermometer failed\n");
+		// }
 
 
 		switch(a_mode){
