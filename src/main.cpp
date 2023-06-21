@@ -5,7 +5,7 @@
 #include <rc/time.h>
 #include "inc/bmp.h"
 
-// #define BMP
+#define BMP
 #define MPU
 
 rc_bmp_data_t bmp_data;

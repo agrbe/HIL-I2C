@@ -7,7 +7,11 @@
 #include "../inc/bmp_defs.h"
 
 // #define DEBUG
+//#ifndef HIL
+//#define BMP_BUS 2
+//#elif
 #define BMP_BUS 1
+//#endif
 
 // local struct for calibration data
 typedef struct bmp280_cal_t{
